@@ -1,0 +1,1495 @@
+
+1_wire.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000600  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000058c  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000048  00800100  00800100  00000600  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000600  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000630  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000130  00000000  00000000  00000670  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001d35  00000000  00000000  000007a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000bce  00000000  00000000  000024d5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000c94  00000000  00000000  000030a3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000288  00000000  00000000  00003d38  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000072e  00000000  00000000  00003fc0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000119e  00000000  00000000  000046ee  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000c0  00000000  00000000  0000588c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a8 34       	cpi	r26, 0x48	; 72
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 2d 01 	call	0x25a	; 0x25a <main>
+  88:	0c 94 c4 02 	jmp	0x588	; 0x588 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <SearchBuses>:
+ *  \retval SEARCH_SUCCESSFUL   Search completed successfully.
+ *  \retval SEARCH_CRC_ERROR    A CRC error occured. Probably because of noise
+ *                              during transmission.
+ */
+unsigned char SearchBuses(OWI_device *devices, unsigned char len, unsigned char buses)
+{
+  90:	8f 92       	push	r8
+  92:	9f 92       	push	r9
+  94:	af 92       	push	r10
+  96:	bf 92       	push	r11
+  98:	cf 92       	push	r12
+  9a:	df 92       	push	r13
+  9c:	ef 92       	push	r14
+  9e:	ff 92       	push	r15
+  a0:	0f 93       	push	r16
+  a2:	1f 93       	push	r17
+  a4:	cf 93       	push	r28
+  a6:	df 93       	push	r29
+  a8:	8c 01       	movw	r16, r24
+	unsigned char  lastDeviation;
+	unsigned char  numDevices;
+
+	// Initialize all addresses as zero, on bus 0 (does not exist).
+	// Do a search on the bus to discover all addresses.
+	for (i = 0; i < len; i++) {
+  aa:	66 23       	and	r22, r22
+  ac:	59 f0       	breq	.+22     	; 0xc4 <SearchBuses+0x34>
+  ae:	20 e0       	ldi	r18, 0x00	; 0
+		devices[i].bus = 0x00;
+  b0:	fc 01       	movw	r30, r24
+  b2:	11 92       	st	Z+, r1
+  b4:	09 96       	adiw	r24, 0x09	; 9
+		for (j = 0; j < 8; j++) {
+			devices[i].id[j] = 0x00;
+  b6:	11 92       	st	Z+, r1
+
+	// Initialize all addresses as zero, on bus 0 (does not exist).
+	// Do a search on the bus to discover all addresses.
+	for (i = 0; i < len; i++) {
+		devices[i].bus = 0x00;
+		for (j = 0; j < 8; j++) {
+  b8:	8e 17       	cp	r24, r30
+  ba:	9f 07       	cpc	r25, r31
+  bc:	e1 f7       	brne	.-8      	; 0xb6 <SearchBuses+0x26>
+	unsigned char  lastDeviation;
+	unsigned char  numDevices;
+
+	// Initialize all addresses as zero, on bus 0 (does not exist).
+	// Do a search on the bus to discover all addresses.
+	for (i = 0; i < len; i++) {
+  be:	2f 5f       	subi	r18, 0xFF	; 255
+  c0:	26 13       	cpse	r18, r22
+  c2:	f6 cf       	rjmp	.-20     	; 0xb0 <SearchBuses+0x20>
+			devices[i].id[j] = 0x00;
+		}
+	}
+
+	// Find the buses with slave devices.
+	presence = OWI_DetectPresence(BUSES);
+  c4:	81 e0       	ldi	r24, 0x01	; 1
+  c6:	0e 94 82 02 	call	0x504	; 0x504 <OWI_DetectPresence>
+  ca:	98 2e       	mov	r9, r24
+
+	numDevices = 0;
+	newID      = devices[0].id;
+  cc:	e8 01       	movw	r28, r16
+  ce:	21 96       	adiw	r28, 0x01	; 1
+  d0:	68 94       	set
+  d2:	ee 24       	eor	r14, r14
+  d4:	e3 f8       	bld	r14, 3
+  d6:	f1 2c       	mov	r15, r1
+	}
+
+	// Find the buses with slave devices.
+	presence = OWI_DetectPresence(BUSES);
+
+	numDevices = 0;
+  d8:	d1 2c       	mov	r13, r1
+	newID      = devices[0].id;
+
+	// Go through all buses with slave devices.
+	for (currentBus = 0x01; currentBus; currentBus <<= 1) {
+  da:	cc 24       	eor	r12, r12
+  dc:	c3 94       	inc	r12
+  de:	81 2c       	mov	r8, r1
+		if (currentBus & presence) // Devices available on this bus.
+		{
+			// Do slave search on each bus, and place identifiers and corresponding
+			// bus "addresses" in the array.
+			do {
+				memcpy(newID, currentID, 8);
+  e0:	68 94       	set
+  e2:	aa 24       	eor	r10, r10
+  e4:	a3 f8       	bld	r10, 3
+
+	// Go through all buses with slave devices.
+	for (currentBus = 0x01; currentBus; currentBus <<= 1) {
+		lastDeviation = 0;
+		currentID     = newID;
+		if (currentBus & presence) // Devices available on this bus.
+  e6:	8c 2d       	mov	r24, r12
+  e8:	89 21       	and	r24, r9
+  ea:	c1 f1       	breq	.+112    	; 0x15c <SearchBuses+0xcc>
+  ec:	ec 2f       	mov	r30, r28
+  ee:	fd 2f       	mov	r31, r29
+  f0:	b8 2c       	mov	r11, r8
+  f2:	01 c0       	rjmp	.+2      	; 0xf6 <SearchBuses+0x66>
+				OWI_DetectPresence(currentBus);
+				lastDeviation           = OWI_SearchRom(newID, lastDeviation, currentBus);
+				currentID               = newID;
+				devices[numDevices].bus = currentBus;
+				numDevices++;
+				newID = devices[numDevices].id;
+  f4:	e9 01       	movw	r28, r18
+		if (currentBus & presence) // Devices available on this bus.
+		{
+			// Do slave search on each bus, and place identifiers and corresponding
+			// bus "addresses" in the array.
+			do {
+				memcpy(newID, currentID, 8);
+  f6:	de 01       	movw	r26, r28
+  f8:	8a 2d       	mov	r24, r10
+  fa:	01 90       	ld	r0, Z+
+  fc:	0d 92       	st	X+, r0
+  fe:	8a 95       	dec	r24
+ 100:	e1 f7       	brne	.-8      	; 0xfa <SearchBuses+0x6a>
+				OWI_DetectPresence(currentBus);
+ 102:	8c 2d       	mov	r24, r12
+ 104:	0e 94 82 02 	call	0x504	; 0x504 <OWI_DetectPresence>
+				lastDeviation           = OWI_SearchRom(newID, lastDeviation, currentBus);
+ 108:	4c 2d       	mov	r20, r12
+ 10a:	6b 2d       	mov	r22, r11
+ 10c:	ce 01       	movw	r24, r28
+ 10e:	0e 94 ca 01 	call	0x394	; 0x394 <OWI_SearchRom>
+ 112:	b8 2e       	mov	r11, r24
+				currentID               = newID;
+				devices[numDevices].bus = currentBus;
+ 114:	8d 2d       	mov	r24, r13
+ 116:	90 e0       	ldi	r25, 0x00	; 0
+ 118:	fc 01       	movw	r30, r24
+ 11a:	ee 0f       	add	r30, r30
+ 11c:	ff 1f       	adc	r31, r31
+ 11e:	ee 0f       	add	r30, r30
+ 120:	ff 1f       	adc	r31, r31
+ 122:	ee 0f       	add	r30, r30
+ 124:	ff 1f       	adc	r31, r31
+ 126:	8e 0f       	add	r24, r30
+ 128:	9f 1f       	adc	r25, r31
+ 12a:	f8 01       	movw	r30, r16
+ 12c:	e8 0f       	add	r30, r24
+ 12e:	f9 1f       	adc	r31, r25
+ 130:	c0 82       	st	Z, r12
+				numDevices++;
+ 132:	d3 94       	inc	r13
+				newID = devices[numDevices].id;
+ 134:	2d 2d       	mov	r18, r13
+ 136:	30 e0       	ldi	r19, 0x00	; 0
+ 138:	c9 01       	movw	r24, r18
+ 13a:	88 0f       	add	r24, r24
+ 13c:	99 1f       	adc	r25, r25
+ 13e:	88 0f       	add	r24, r24
+ 140:	99 1f       	adc	r25, r25
+ 142:	88 0f       	add	r24, r24
+ 144:	99 1f       	adc	r25, r25
+ 146:	28 0f       	add	r18, r24
+ 148:	39 1f       	adc	r19, r25
+ 14a:	20 0f       	add	r18, r16
+ 14c:	31 1f       	adc	r19, r17
+ 14e:	2f 5f       	subi	r18, 0xFF	; 255
+ 150:	3f 4f       	sbci	r19, 0xFF	; 255
+			// bus "addresses" in the array.
+			do {
+				memcpy(newID, currentID, 8);
+				OWI_DetectPresence(currentBus);
+				lastDeviation           = OWI_SearchRom(newID, lastDeviation, currentBus);
+				currentID               = newID;
+ 152:	ec 2f       	mov	r30, r28
+ 154:	fd 2f       	mov	r31, r29
+				devices[numDevices].bus = currentBus;
+				numDevices++;
+				newID = devices[numDevices].id;
+			} while (lastDeviation != OWI_ROM_SEARCH_FINISHED);
+ 156:	b1 10       	cpse	r11, r1
+ 158:	cd cf       	rjmp	.-102    	; 0xf4 <SearchBuses+0x64>
+				OWI_DetectPresence(currentBus);
+				lastDeviation           = OWI_SearchRom(newID, lastDeviation, currentBus);
+				currentID               = newID;
+				devices[numDevices].bus = currentBus;
+				numDevices++;
+				newID = devices[numDevices].id;
+ 15a:	e9 01       	movw	r28, r18
+
+	numDevices = 0;
+	newID      = devices[0].id;
+
+	// Go through all buses with slave devices.
+	for (currentBus = 0x01; currentBus; currentBus <<= 1) {
+ 15c:	cc 0c       	add	r12, r12
+ 15e:	81 e0       	ldi	r24, 0x01	; 1
+ 160:	e8 1a       	sub	r14, r24
+ 162:	f1 08       	sbc	r15, r1
+ 164:	09 f0       	breq	.+2      	; 0x168 <SearchBuses+0xd8>
+ 166:	bf cf       	rjmp	.-130    	; 0xe6 <SearchBuses+0x56>
+			} while (lastDeviation != OWI_ROM_SEARCH_FINISHED);
+		}
+	}
+
+	// Go through all the devices and do CRC check.
+	for (i = 0; i < numDevices; i++) {
+ 168:	dd 20       	and	r13, r13
+ 16a:	71 f0       	breq	.+28     	; 0x188 <SearchBuses+0xf8>
+ 16c:	0f 5f       	subi	r16, 0xFF	; 255
+ 16e:	1f 4f       	sbci	r17, 0xFF	; 255
+ 170:	c0 e0       	ldi	r28, 0x00	; 0
+		// If any id has a crc error, return error.
+		if (OWI_CheckRomCRC(devices[i].id) != OWI_CRC_OK) {
+ 172:	c8 01       	movw	r24, r16
+ 174:	0e 94 67 01 	call	0x2ce	; 0x2ce <OWI_CheckRomCRC>
+ 178:	81 11       	cpse	r24, r1
+ 17a:	08 c0       	rjmp	.+16     	; 0x18c <SearchBuses+0xfc>
+			} while (lastDeviation != OWI_ROM_SEARCH_FINISHED);
+		}
+	}
+
+	// Go through all the devices and do CRC check.
+	for (i = 0; i < numDevices; i++) {
+ 17c:	cf 5f       	subi	r28, 0xFF	; 255
+ 17e:	07 5f       	subi	r16, 0xF7	; 247
+ 180:	1f 4f       	sbci	r17, 0xFF	; 255
+ 182:	cd 11       	cpse	r28, r13
+ 184:	f6 cf       	rjmp	.-20     	; 0x172 <SearchBuses+0xe2>
+ 186:	03 c0       	rjmp	.+6      	; 0x18e <SearchBuses+0xfe>
+		if (OWI_CheckRomCRC(devices[i].id) != OWI_CRC_OK) {
+			return SEARCH_CRC_ERROR;
+		}
+	}
+	// Else, return Successful.
+	return SEARCH_SUCCESSFUL;
+ 188:	80 e0       	ldi	r24, 0x00	; 0
+ 18a:	01 c0       	rjmp	.+2      	; 0x18e <SearchBuses+0xfe>
+
+	// Go through all the devices and do CRC check.
+	for (i = 0; i < numDevices; i++) {
+		// If any id has a crc error, return error.
+		if (OWI_CheckRomCRC(devices[i].id) != OWI_CRC_OK) {
+			return SEARCH_CRC_ERROR;
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+		}
+	}
+	// Else, return Successful.
+	return SEARCH_SUCCESSFUL;
+}
+ 18e:	df 91       	pop	r29
+ 190:	cf 91       	pop	r28
+ 192:	1f 91       	pop	r17
+ 194:	0f 91       	pop	r16
+ 196:	ff 90       	pop	r15
+ 198:	ef 90       	pop	r14
+ 19a:	df 90       	pop	r13
+ 19c:	cf 90       	pop	r12
+ 19e:	bf 90       	pop	r11
+ 1a0:	af 90       	pop	r10
+ 1a2:	9f 90       	pop	r9
+ 1a4:	8f 90       	pop	r8
+ 1a6:	08 95       	ret
+
+000001a8 <FindFamily>:
+OWI_device *FindFamily(unsigned char familyID, OWI_device *devices, unsigned char size)
+{
+	unsigned char i = 0;
+
+	// Search through the array.
+	while (i < size) {
+ 1a8:	44 23       	and	r20, r20
+ 1aa:	e1 f0       	breq	.+56     	; 0x1e4 <FindFamily+0x3c>
+		// Return the pointer if there is a family id match.
+		if ((*devices).id[0] == familyID) {
+ 1ac:	fb 01       	movw	r30, r22
+ 1ae:	91 81       	ldd	r25, Z+1	; 0x01
+ 1b0:	98 13       	cpse	r25, r24
+ 1b2:	0b c0       	rjmp	.+22     	; 0x1ca <FindFamily+0x22>
+ 1b4:	07 c0       	rjmp	.+14     	; 0x1c4 <FindFamily+0x1c>
+ 1b6:	27 5f       	subi	r18, 0xF7	; 247
+ 1b8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1ba:	f9 01       	movw	r30, r18
+ 1bc:	39 97       	sbiw	r30, 0x09	; 9
+ 1be:	50 81       	ld	r21, Z
+ 1c0:	58 13       	cpse	r21, r24
+ 1c2:	07 c0       	rjmp	.+14     	; 0x1d2 <FindFamily+0x2a>
+			return devices;
+ 1c4:	86 2f       	mov	r24, r22
+ 1c6:	97 2f       	mov	r25, r23
+ 1c8:	08 95       	ret
+ 1ca:	9b 01       	movw	r18, r22
+ 1cc:	26 5f       	subi	r18, 0xF6	; 246
+ 1ce:	3f 4f       	sbci	r19, 0xFF	; 255
+	unsigned char i = 0;
+
+	// Search through the array.
+	while (i < size) {
+		// Return the pointer if there is a family id match.
+		if ((*devices).id[0] == familyID) {
+ 1d0:	90 e0       	ldi	r25, 0x00	; 0
+ 1d2:	b9 01       	movw	r22, r18
+ 1d4:	61 50       	subi	r22, 0x01	; 1
+ 1d6:	71 09       	sbc	r23, r1
+			return devices;
+		}
+		devices++;
+		i++;
+ 1d8:	9f 5f       	subi	r25, 0xFF	; 255
+OWI_device *FindFamily(unsigned char familyID, OWI_device *devices, unsigned char size)
+{
+	unsigned char i = 0;
+
+	// Search through the array.
+	while (i < size) {
+ 1da:	94 13       	cpse	r25, r20
+ 1dc:	ec cf       	rjmp	.-40     	; 0x1b6 <FindFamily+0xe>
+		}
+		devices++;
+		i++;
+	}
+	// Else, return NULL.
+	return NULL;
+ 1de:	80 e0       	ldi	r24, 0x00	; 0
+ 1e0:	90 e0       	ldi	r25, 0x00	; 0
+ 1e2:	08 95       	ret
+ 1e4:	80 e0       	ldi	r24, 0x00	; 0
+ 1e6:	90 e0       	ldi	r25, 0x00	; 0
+}
+ 1e8:	08 95       	ret
+
+000001ea <DS1820_ReadTemperature>:
+ *  \param  id  The 64 bit identifier of the DS1820.
+ *
+ *  \return The 16 bit signed temperature read from the DS1820.
+ */
+signed int DS1820_ReadTemperature(unsigned char bus, unsigned char *id)
+{
+ 1ea:	0f 93       	push	r16
+ 1ec:	1f 93       	push	r17
+ 1ee:	cf 93       	push	r28
+ 1f0:	c8 2f       	mov	r28, r24
+ 1f2:	8b 01       	movw	r16, r22
+	signed int temperature;
+
+	// Reset, presence.
+	if (!OWI_DetectPresence(bus)) {
+ 1f4:	0e 94 82 02 	call	0x504	; 0x504 <OWI_DetectPresence>
+ 1f8:	88 23       	and	r24, r24
+ 1fa:	31 f1       	breq	.+76     	; 0x248 <DS1820_ReadTemperature+0x5e>
+		return DS1820_ERROR; // Error
+	}
+	// Match the id found earlier.
+	OWI_MatchRom(id, bus);
+ 1fc:	6c 2f       	mov	r22, r28
+ 1fe:	c8 01       	movw	r24, r16
+ 200:	0e 94 b0 01 	call	0x360	; 0x360 <OWI_MatchRom>
+	// Send start conversion command.
+	OWI_SendByte(DS1820_START_CONVERSION, bus);
+ 204:	6c 2f       	mov	r22, r28
+ 206:	84 e4       	ldi	r24, 0x44	; 68
+ 208:	0e 94 87 01 	call	0x30e	; 0x30e <OWI_SendByte>
+	// Wait until conversion is finished.
+	// Bus line is held low until conversion is finished.
+	while (!OWI_ReadBit(bus)) {
+ 20c:	8c 2f       	mov	r24, r28
+ 20e:	0e 94 67 02 	call	0x4ce	; 0x4ce <OWI_ReadBit>
+ 212:	88 23       	and	r24, r24
+ 214:	d9 f3       	breq	.-10     	; 0x20c <DS1820_ReadTemperature+0x22>
+	}
+	// Reset, presence.
+	if (!OWI_DetectPresence(bus)) {
+ 216:	8c 2f       	mov	r24, r28
+ 218:	0e 94 82 02 	call	0x504	; 0x504 <OWI_DetectPresence>
+ 21c:	88 23       	and	r24, r24
+ 21e:	b9 f0       	breq	.+46     	; 0x24e <DS1820_ReadTemperature+0x64>
+		return -1000; // Error
+	}
+	// Match id again.
+	OWI_MatchRom(id, bus);
+ 220:	6c 2f       	mov	r22, r28
+ 222:	c8 01       	movw	r24, r16
+ 224:	0e 94 b0 01 	call	0x360	; 0x360 <OWI_MatchRom>
+	// Send READ SCRATCHPAD command.
+	OWI_SendByte(DS1820_READ_SCRATCHPAD, bus);
+ 228:	6c 2f       	mov	r22, r28
+ 22a:	8e eb       	ldi	r24, 0xBE	; 190
+ 22c:	0e 94 87 01 	call	0x30e	; 0x30e <OWI_SendByte>
+	// Read only two first bytes (temperature low, temperature high)
+	// and place them in the 16 bit temperature variable.
+	temperature = OWI_ReceiveByte(bus);
+ 230:	8c 2f       	mov	r24, r28
+ 232:	0e 94 9d 01 	call	0x33a	; 0x33a <OWI_ReceiveByte>
+ 236:	08 2f       	mov	r16, r24
+ 238:	10 e0       	ldi	r17, 0x00	; 0
+	temperature |= (OWI_ReceiveByte(bus) << 8);
+ 23a:	8c 2f       	mov	r24, r28
+ 23c:	0e 94 9d 01 	call	0x33a	; 0x33a <OWI_ReceiveByte>
+
+	return temperature;
+ 240:	98 01       	movw	r18, r16
+ 242:	38 2b       	or	r19, r24
+ 244:	c9 01       	movw	r24, r18
+ 246:	05 c0       	rjmp	.+10     	; 0x252 <DS1820_ReadTemperature+0x68>
+{
+	signed int temperature;
+
+	// Reset, presence.
+	if (!OWI_DetectPresence(bus)) {
+		return DS1820_ERROR; // Error
+ 248:	88 e1       	ldi	r24, 0x18	; 24
+ 24a:	9c ef       	ldi	r25, 0xFC	; 252
+ 24c:	02 c0       	rjmp	.+4      	; 0x252 <DS1820_ReadTemperature+0x68>
+	// Bus line is held low until conversion is finished.
+	while (!OWI_ReadBit(bus)) {
+	}
+	// Reset, presence.
+	if (!OWI_DetectPresence(bus)) {
+		return -1000; // Error
+ 24e:	88 e1       	ldi	r24, 0x18	; 24
+ 250:	9c ef       	ldi	r25, 0xFC	; 252
+	// and place them in the 16 bit temperature variable.
+	temperature = OWI_ReceiveByte(bus);
+	temperature |= (OWI_ReceiveByte(bus) << 8);
+
+	return temperature;
+}
+ 252:	cf 91       	pop	r28
+ 254:	1f 91       	pop	r17
+ 256:	0f 91       	pop	r16
+ 258:	08 95       	ret
+
+0000025a <main>:
+{
+	static OWI_device devices[MAX_DEVICES];
+	OWI_device *      ds1820;
+	signed int        temperature = 0;
+
+	system_init();
+ 25a:	0e 94 9e 02 	call	0x53c	; 0x53c <system_init>
+	PRR = ~(1 << PRUSART0); // In Atmel START code, PRR register is enabled by default to reduce the power
+ 25e:	8d ef       	ldi	r24, 0xFD	; 253
+ 260:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <__TEXT_REGION_LENGTH__+0x7e0064>
+	                        // consumption.//Disble it to enable UART module
+	// Initialize PORTB as output. Can be used to display values on
+	// the LEDs on a STK600 development board.
+	DDRB = 0xff;
+ 264:	8f ef       	ldi	r24, 0xFF	; 255
+ 266:	84 b9       	out	0x04, r24	; 4
+
+	OWI_Init(BUSES);
+ 268:	81 e0       	ldi	r24, 0x01	; 1
+ 26a:	0e 94 33 02 	call	0x466	; 0x466 <OWI_Init>
+
+	// Do the bus search until all ids are read without crc error.
+	while (SearchBuses(devices, MAX_DEVICES, BUSES) != SEARCH_SUCCESSFUL) {
+ 26e:	41 e0       	ldi	r20, 0x01	; 1
+ 270:	68 e0       	ldi	r22, 0x08	; 8
+ 272:	80 e0       	ldi	r24, 0x00	; 0
+ 274:	91 e0       	ldi	r25, 0x01	; 1
+ 276:	0e 94 48 00 	call	0x90	; 0x90 <SearchBuses>
+ 27a:	81 11       	cpse	r24, r1
+ 27c:	f8 cf       	rjmp	.-16     	; 0x26e <main+0x14>
+	}
+
+	// See if there is a DS1820 on a bus.
+	ds1820 = FindFamily(DS1820_FAMILY_ID, devices, MAX_DEVICES);
+ 27e:	48 e0       	ldi	r20, 0x08	; 8
+ 280:	60 e0       	ldi	r22, 0x00	; 0
+ 282:	71 e0       	ldi	r23, 0x01	; 1
+ 284:	80 e1       	ldi	r24, 0x10	; 16
+ 286:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <FindFamily>
+ 28a:	ec 01       	movw	r28, r24
+
+int main(void)
+{
+	static OWI_device devices[MAX_DEVICES];
+	OWI_device *      ds1820;
+	signed int        temperature = 0;
+ 28c:	80 e0       	ldi	r24, 0x00	; 0
+ 28e:	90 e0       	ldi	r25, 0x00	; 0
+	// Do something useful with the slave devices in an eternal loop.
+	while (1) {
+		// If there is a DS1820 temperature sensor on a bus, read the temperature.
+		// The DS1820 must have Vdd pin connected for this code to work.
+		if (ds1820 != NULL) {
+			temperature = DS1820_ReadTemperature((*ds1820).bus, (*ds1820).id);
+ 290:	8e 01       	movw	r16, r28
+ 292:	0f 5f       	subi	r16, 0xFF	; 255
+ 294:	1f 4f       	sbci	r17, 0xFF	; 255
+
+	// Do something useful with the slave devices in an eternal loop.
+	while (1) {
+		// If there is a DS1820 temperature sensor on a bus, read the temperature.
+		// The DS1820 must have Vdd pin connected for this code to work.
+		if (ds1820 != NULL) {
+ 296:	20 97       	sbiw	r28, 0x00	; 0
+ 298:	21 f0       	breq	.+8      	; 0x2a2 <main+0x48>
+			temperature = DS1820_ReadTemperature((*ds1820).bus, (*ds1820).id);
+ 29a:	b8 01       	movw	r22, r16
+ 29c:	88 81       	ld	r24, Y
+ 29e:	0e 94 f5 00 	call	0x1ea	; 0x1ea <DS1820_ReadTemperature>
+		}
+		// Discard lsb of temperature and output to PORTB.
+		PORTB = ~(temperature >> 1);
+ 2a2:	9c 01       	movw	r18, r24
+ 2a4:	35 95       	asr	r19
+ 2a6:	27 95       	ror	r18
+ 2a8:	20 95       	com	r18
+ 2aa:	25 b9       	out	0x05, r18	; 5
+		/* e.g. when temperature is 22.9 deg C, PORTB =0xE5 (decimal 229)*/
+	}
+ 2ac:	f4 cf       	rjmp	.-24     	; 0x296 <main+0x3c>
+
+000002ae <OWI_ComputeCRC8>:
+			seed |= 0x8000;
+		}
+		inData >>= 1;
+	}
+	return seed;
+}
+ 2ae:	98 e0       	ldi	r25, 0x08	; 8
+ 2b0:	38 e1       	ldi	r19, 0x18	; 24
+ 2b2:	26 2f       	mov	r18, r22
+ 2b4:	28 27       	eor	r18, r24
+ 2b6:	20 fd       	sbrc	r18, 0
+ 2b8:	02 c0       	rjmp	.+4      	; 0x2be <OWI_ComputeCRC8+0x10>
+ 2ba:	66 95       	lsr	r22
+ 2bc:	03 c0       	rjmp	.+6      	; 0x2c4 <OWI_ComputeCRC8+0x16>
+ 2be:	63 27       	eor	r22, r19
+ 2c0:	66 95       	lsr	r22
+ 2c2:	60 68       	ori	r22, 0x80	; 128
+ 2c4:	86 95       	lsr	r24
+ 2c6:	91 50       	subi	r25, 0x01	; 1
+ 2c8:	a1 f7       	brne	.-24     	; 0x2b2 <OWI_ComputeCRC8+0x4>
+ 2ca:	86 2f       	mov	r24, r22
+ 2cc:	08 95       	ret
+
+000002ce <OWI_CheckRomCRC>:
+ *
+ *  \retval OWI_CRC_OK      The CRC's matched.
+ *  \retval OWI_CRC_ERROR   There was a discrepancy between the calculated and the stored CRC.
+ */
+unsigned char OWI_CheckRomCRC(unsigned char *romValue)
+{
+ 2ce:	ef 92       	push	r14
+ 2d0:	ff 92       	push	r15
+ 2d2:	0f 93       	push	r16
+ 2d4:	1f 93       	push	r17
+ 2d6:	cf 93       	push	r28
+ 2d8:	df 93       	push	r29
+ 2da:	7c 01       	movw	r14, r24
+ 2dc:	8c 01       	movw	r16, r24
+ 2de:	09 5f       	subi	r16, 0xF9	; 249
+ 2e0:	1f 4f       	sbci	r17, 0xFF	; 255
+ 2e2:	ec 01       	movw	r28, r24
+	unsigned char i;
+	unsigned char crc8 = 0;
+ 2e4:	60 e0       	ldi	r22, 0x00	; 0
+
+	for (i = 0; i < 7; i++) {
+		crc8 = OWI_ComputeCRC8(*romValue, crc8);
+ 2e6:	89 91       	ld	r24, Y+
+ 2e8:	0e 94 57 01 	call	0x2ae	; 0x2ae <OWI_ComputeCRC8>
+ 2ec:	68 2f       	mov	r22, r24
+unsigned char OWI_CheckRomCRC(unsigned char *romValue)
+{
+	unsigned char i;
+	unsigned char crc8 = 0;
+
+	for (i = 0; i < 7; i++) {
+ 2ee:	c0 17       	cp	r28, r16
+ 2f0:	d1 07       	cpc	r29, r17
+ 2f2:	c9 f7       	brne	.-14     	; 0x2e6 <OWI_CheckRomCRC+0x18>
+		crc8 = OWI_ComputeCRC8(*romValue, crc8);
+		romValue++;
+	}
+	if (crc8 == (*romValue)) {
+ 2f4:	81 e0       	ldi	r24, 0x01	; 1
+ 2f6:	f7 01       	movw	r30, r14
+ 2f8:	97 81       	ldd	r25, Z+7	; 0x07
+ 2fa:	69 13       	cpse	r22, r25
+ 2fc:	01 c0       	rjmp	.+2      	; 0x300 <OWI_CheckRomCRC+0x32>
+ 2fe:	80 e0       	ldi	r24, 0x00	; 0
+		return OWI_CRC_OK;
+	}
+	return OWI_CRC_ERROR;
+}
+ 300:	df 91       	pop	r29
+ 302:	cf 91       	pop	r28
+ 304:	1f 91       	pop	r17
+ 306:	0f 91       	pop	r16
+ 308:	ff 90       	pop	r15
+ 30a:	ef 90       	pop	r14
+ 30c:	08 95       	ret
+
+0000030e <OWI_SendByte>:
+	while (bytesLeft > 0) {
+		// Place the received data in memory.
+		*romValue++ = OWI_ReceiveByte(pin);
+		bytesLeft--;
+	}
+}
+ 30e:	1f 93       	push	r17
+ 310:	cf 93       	push	r28
+ 312:	df 93       	push	r29
+ 314:	d8 2f       	mov	r29, r24
+ 316:	16 2f       	mov	r17, r22
+ 318:	c8 e0       	ldi	r28, 0x08	; 8
+ 31a:	d0 ff       	sbrs	r29, 0
+ 31c:	04 c0       	rjmp	.+8      	; 0x326 <OWI_SendByte+0x18>
+ 31e:	81 2f       	mov	r24, r17
+ 320:	0e 94 3d 02 	call	0x47a	; 0x47a <OWI_WriteBit1>
+ 324:	03 c0       	rjmp	.+6      	; 0x32c <OWI_SendByte+0x1e>
+ 326:	81 2f       	mov	r24, r17
+ 328:	0e 94 52 02 	call	0x4a4	; 0x4a4 <OWI_WriteBit0>
+ 32c:	d6 95       	lsr	r29
+ 32e:	c1 50       	subi	r28, 0x01	; 1
+ 330:	a1 f7       	brne	.-24     	; 0x31a <OWI_SendByte+0xc>
+ 332:	df 91       	pop	r29
+ 334:	cf 91       	pop	r28
+ 336:	1f 91       	pop	r17
+ 338:	08 95       	ret
+
+0000033a <OWI_ReceiveByte>:
+ 33a:	1f 93       	push	r17
+ 33c:	cf 93       	push	r28
+ 33e:	df 93       	push	r29
+ 340:	18 2f       	mov	r17, r24
+ 342:	d8 e0       	ldi	r29, 0x08	; 8
+ 344:	c0 e0       	ldi	r28, 0x00	; 0
+ 346:	c6 95       	lsr	r28
+ 348:	81 2f       	mov	r24, r17
+ 34a:	0e 94 67 02 	call	0x4ce	; 0x4ce <OWI_ReadBit>
+ 34e:	81 11       	cpse	r24, r1
+ 350:	c0 68       	ori	r28, 0x80	; 128
+ 352:	d1 50       	subi	r29, 0x01	; 1
+ 354:	c1 f7       	brne	.-16     	; 0x346 <OWI_ReceiveByte+0xc>
+ 356:	8c 2f       	mov	r24, r28
+ 358:	df 91       	pop	r29
+ 35a:	cf 91       	pop	r28
+ 35c:	1f 91       	pop	r17
+ 35e:	08 95       	ret
+
+00000360 <OWI_MatchRom>:
+ *  \param  romValue    A pointer to the ID to match against.
+ *
+ *  \param  pins    A bitmask of the buses to perform the MATCH ROM command on.
+ */
+void OWI_MatchRom(unsigned char *romValue, unsigned char pins)
+{
+ 360:	ff 92       	push	r15
+ 362:	0f 93       	push	r16
+ 364:	1f 93       	push	r17
+ 366:	cf 93       	push	r28
+ 368:	df 93       	push	r29
+ 36a:	8c 01       	movw	r16, r24
+ 36c:	f6 2e       	mov	r15, r22
+	unsigned char bytesLeft = 8;
+
+	// Send the MATCH ROM command.
+	OWI_SendByte(OWI_ROM_MATCH, pins);
+ 36e:	85 e5       	ldi	r24, 0x55	; 85
+ 370:	0e 94 87 01 	call	0x30e	; 0x30e <OWI_SendByte>
+ 374:	e8 01       	movw	r28, r16
+ 376:	08 5f       	subi	r16, 0xF8	; 248
+ 378:	1f 4f       	sbci	r17, 0xFF	; 255
+
+	// Do once for each byte.
+	while (bytesLeft > 0) {
+		// Transmit 1 byte of the ID to match.
+		OWI_SendByte(*romValue++, pins);
+ 37a:	6f 2d       	mov	r22, r15
+ 37c:	89 91       	ld	r24, Y+
+ 37e:	0e 94 87 01 	call	0x30e	; 0x30e <OWI_SendByte>
+
+	// Send the MATCH ROM command.
+	OWI_SendByte(OWI_ROM_MATCH, pins);
+
+	// Do once for each byte.
+	while (bytesLeft > 0) {
+ 382:	c0 17       	cp	r28, r16
+ 384:	d1 07       	cpc	r29, r17
+ 386:	c9 f7       	brne	.-14     	; 0x37a <OWI_MatchRom+0x1a>
+		// Transmit 1 byte of the ID to match.
+		OWI_SendByte(*romValue++, pins);
+		bytesLeft--;
+	}
+}
+ 388:	df 91       	pop	r29
+ 38a:	cf 91       	pop	r28
+ 38c:	1f 91       	pop	r17
+ 38e:	0f 91       	pop	r16
+ 390:	ff 90       	pop	r15
+ 392:	08 95       	ret
+
+00000394 <OWI_SearchRom>:
+ * search), or OWI_ROM_SEARCH_FINISHED when there are no more devices to be discovered.
+ *
+ *  \note   See main.c for an example of how to utilize this function.
+ */
+unsigned char OWI_SearchRom(unsigned char *bitPattern, unsigned char lastDeviation, unsigned char pin)
+{
+ 394:	bf 92       	push	r11
+ 396:	cf 92       	push	r12
+ 398:	df 92       	push	r13
+ 39a:	ef 92       	push	r14
+ 39c:	ff 92       	push	r15
+ 39e:	0f 93       	push	r16
+ 3a0:	1f 93       	push	r17
+ 3a2:	cf 93       	push	r28
+ 3a4:	df 93       	push	r29
+ 3a6:	8c 01       	movw	r16, r24
+ 3a8:	d6 2e       	mov	r13, r22
+ 3aa:	f4 2e       	mov	r15, r20
+	unsigned char bitMask      = 0x01;
+	unsigned char bitA;
+	unsigned char bitB;
+
+	// Send SEARCH ROM command on the bus.
+	OWI_SendByte(OWI_ROM_SEARCH, pin);
+ 3ac:	64 2f       	mov	r22, r20
+ 3ae:	80 ef       	ldi	r24, 0xF0	; 240
+ 3b0:	0e 94 87 01 	call	0x30e	; 0x30e <OWI_SendByte>
+ */
+unsigned char OWI_SearchRom(unsigned char *bitPattern, unsigned char lastDeviation, unsigned char pin)
+{
+	unsigned char currentBit   = 1;
+	unsigned char newDeviation = 0;
+	unsigned char bitMask      = 0x01;
+ 3b4:	c1 e0       	ldi	r28, 0x01	; 1
+ *  \note   See main.c for an example of how to utilize this function.
+ */
+unsigned char OWI_SearchRom(unsigned char *bitPattern, unsigned char lastDeviation, unsigned char pin)
+{
+	unsigned char currentBit   = 1;
+	unsigned char newDeviation = 0;
+ 3b6:	b1 2c       	mov	r11, r1
+ *
+ *  \note   See main.c for an example of how to utilize this function.
+ */
+unsigned char OWI_SearchRom(unsigned char *bitPattern, unsigned char lastDeviation, unsigned char pin)
+{
+	unsigned char currentBit   = 1;
+ 3b8:	d1 e0       	ldi	r29, 0x01	; 1
+		currentBit++;
+
+		// Adjust bitMask and bitPattern pointer.
+		bitMask <<= 1;
+		if (!bitMask) {
+			bitMask = 0x01;
+ 3ba:	cc 24       	eor	r12, r12
+ 3bc:	c3 94       	inc	r12
+	OWI_SendByte(OWI_ROM_SEARCH, pin);
+
+	// Walk through all 64 bits.
+	while (currentBit <= 64) {
+		// Read bit from bus twice.
+		bitA = OWI_ReadBit(pin);
+ 3be:	8f 2d       	mov	r24, r15
+ 3c0:	0e 94 67 02 	call	0x4ce	; 0x4ce <OWI_ReadBit>
+ 3c4:	e8 2e       	mov	r14, r24
+		bitB = OWI_ReadBit(pin);
+ 3c6:	8f 2d       	mov	r24, r15
+ 3c8:	0e 94 67 02 	call	0x4ce	; 0x4ce <OWI_ReadBit>
+
+		if (bitA && bitB) {
+ 3cc:	ee 20       	and	r14, r14
+ 3ce:	09 f4       	brne	.+2      	; 0x3d2 <OWI_SearchRom+0x3e>
+ 3d0:	3d c0       	rjmp	.+122    	; 0x44c <__LOCK_REGION_LENGTH__+0x4c>
+ 3d2:	81 11       	cpse	r24, r1
+ 3d4:	39 c0       	rjmp	.+114    	; 0x448 <__LOCK_REGION_LENGTH__+0x48>
+			return OWI_ROM_SEARCH_FAILED;
+		} else if (bitA ^ bitB) {
+			// Bits A and B are different. All devices have the same bit here.
+			// Set the bit in bitPattern to this value.
+			if (bitA) {
+				(*bitPattern) |= bitMask;
+ 3d6:	f8 01       	movw	r30, r16
+ 3d8:	90 81       	ld	r25, Z
+ 3da:	9c 2b       	or	r25, r28
+ 3dc:	90 83       	st	Z, r25
+ 3de:	1d c0       	rjmp	.+58     	; 0x41a <__LOCK_REGION_LENGTH__+0x1a>
+			} else {
+				(*bitPattern) &= ~bitMask;
+ 3e0:	f8 01       	movw	r30, r16
+ 3e2:	20 81       	ld	r18, Z
+ 3e4:	9c 2f       	mov	r25, r28
+ 3e6:	90 95       	com	r25
+ 3e8:	92 23       	and	r25, r18
+ 3ea:	90 83       	st	Z, r25
+ 3ec:	16 c0       	rjmp	.+44     	; 0x41a <__LOCK_REGION_LENGTH__+0x1a>
+			}
+		} else // Both bits 0
+		{
+			// If this is where a choice was made the last time,
+			// a '1' bit is selected this time.
+			if (currentBit == lastDeviation) {
+ 3ee:	dd 11       	cpse	r29, r13
+ 3f0:	05 c0       	rjmp	.+10     	; 0x3fc <OWI_SearchRom+0x68>
+				(*bitPattern) |= bitMask;
+ 3f2:	f8 01       	movw	r30, r16
+ 3f4:	80 81       	ld	r24, Z
+ 3f6:	8c 2b       	or	r24, r28
+ 3f8:	80 83       	st	Z, r24
+ 3fa:	0f c0       	rjmp	.+30     	; 0x41a <__LOCK_REGION_LENGTH__+0x1a>
+			}
+			// For the rest of the id, '0' bits are selected when
+			// discrepancies occur.
+			else if (currentBit > lastDeviation) {
+ 3fc:	dd 16       	cp	r13, r29
+ 3fe:	40 f4       	brcc	.+16     	; 0x410 <__LOCK_REGION_LENGTH__+0x10>
+				(*bitPattern) &= ~bitMask;
+ 400:	f8 01       	movw	r30, r16
+ 402:	90 81       	ld	r25, Z
+ 404:	8c 2f       	mov	r24, r28
+ 406:	80 95       	com	r24
+ 408:	89 23       	and	r24, r25
+ 40a:	80 83       	st	Z, r24
+ 40c:	bd 2e       	mov	r11, r29
+ 40e:	05 c0       	rjmp	.+10     	; 0x41a <__LOCK_REGION_LENGTH__+0x1a>
+				newDeviation = currentBit;
+			}
+			// If current bit in bit pattern = 0, then this is
+			// out new deviation.
+			else if (!(*bitPattern & bitMask)) {
+ 410:	f8 01       	movw	r30, r16
+ 412:	90 81       	ld	r25, Z
+ 414:	9c 23       	and	r25, r28
+ 416:	49 f0       	breq	.+18     	; 0x42a <__LOCK_REGION_LENGTH__+0x2a>
+ 418:	04 c0       	rjmp	.+8      	; 0x422 <__LOCK_REGION_LENGTH__+0x22>
+			else {
+			}
+		}
+
+		// Send the selected bit to the bus.
+		if ((*bitPattern) & bitMask) {
+ 41a:	f8 01       	movw	r30, r16
+ 41c:	90 81       	ld	r25, Z
+ 41e:	9c 23       	and	r25, r28
+ 420:	29 f0       	breq	.+10     	; 0x42c <__LOCK_REGION_LENGTH__+0x2c>
+			OWI_WriteBit1(pin);
+ 422:	8f 2d       	mov	r24, r15
+ 424:	0e 94 3d 02 	call	0x47a	; 0x47a <OWI_WriteBit1>
+ 428:	04 c0       	rjmp	.+8      	; 0x432 <__LOCK_REGION_LENGTH__+0x32>
+ 42a:	bd 2e       	mov	r11, r29
+		} else {
+			OWI_WriteBit0(pin);
+ 42c:	8f 2d       	mov	r24, r15
+ 42e:	0e 94 52 02 	call	0x4a4	; 0x4a4 <OWI_WriteBit0>
+		}
+
+		// Increment current bit.
+		currentBit++;
+ 432:	df 5f       	subi	r29, 0xFF	; 255
+
+		// Adjust bitMask and bitPattern pointer.
+		bitMask <<= 1;
+ 434:	cc 0f       	add	r28, r28
+		if (!bitMask) {
+ 436:	19 f4       	brne	.+6      	; 0x43e <__LOCK_REGION_LENGTH__+0x3e>
+			bitMask = 0x01;
+			bitPattern++;
+ 438:	0f 5f       	subi	r16, 0xFF	; 255
+ 43a:	1f 4f       	sbci	r17, 0xFF	; 255
+		currentBit++;
+
+		// Adjust bitMask and bitPattern pointer.
+		bitMask <<= 1;
+		if (!bitMask) {
+			bitMask = 0x01;
+ 43c:	cc 2d       	mov	r28, r12
+
+	// Send SEARCH ROM command on the bus.
+	OWI_SendByte(OWI_ROM_SEARCH, pin);
+
+	// Walk through all 64 bits.
+	while (currentBit <= 64) {
+ 43e:	d1 34       	cpi	r29, 0x41	; 65
+ 440:	09 f0       	breq	.+2      	; 0x444 <__LOCK_REGION_LENGTH__+0x44>
+ 442:	bd cf       	rjmp	.-134    	; 0x3be <OWI_SearchRom+0x2a>
+		if (!bitMask) {
+			bitMask = 0x01;
+			bitPattern++;
+		}
+	}
+	return newDeviation;
+ 444:	8b 2d       	mov	r24, r11
+ 446:	05 c0       	rjmp	.+10     	; 0x452 <__LOCK_REGION_LENGTH__+0x52>
+		bitA = OWI_ReadBit(pin);
+		bitB = OWI_ReadBit(pin);
+
+		if (bitA && bitB) {
+			// Both bits 1 (Error).
+			return OWI_ROM_SEARCH_FAILED;
+ 448:	8f ef       	ldi	r24, 0xFF	; 255
+ 44a:	03 c0       	rjmp	.+6      	; 0x452 <__LOCK_REGION_LENGTH__+0x52>
+		} else if (bitA ^ bitB) {
+ 44c:	81 11       	cpse	r24, r1
+ 44e:	c8 cf       	rjmp	.-112    	; 0x3e0 <OWI_SearchRom+0x4c>
+ 450:	ce cf       	rjmp	.-100    	; 0x3ee <OWI_SearchRom+0x5a>
+			bitMask = 0x01;
+			bitPattern++;
+		}
+	}
+	return newDeviation;
+}
+ 452:	df 91       	pop	r29
+ 454:	cf 91       	pop	r28
+ 456:	1f 91       	pop	r17
+ 458:	0f 91       	pop	r16
+ 45a:	ff 90       	pop	r15
+ 45c:	ef 90       	pop	r14
+ 45e:	df 90       	pop	r13
+ 460:	cf 90       	pop	r12
+ 462:	bf 90       	pop	r11
+ 464:	08 95       	ret
+
+00000466 <OWI_Init>:
+ *
+ *  \param  pins    A bitmask of the buses to initialize.
+ */
+void OWI_Init(unsigned char pins)
+{
+	OWI_RELEASE_BUS(pins);
+ 466:	81 30       	cpi	r24, 0x01	; 1
+ 468:	19 f4       	brne	.+6      	; 0x470 <OWI_Init+0xa>
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+ 46a:	50 98       	cbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRD &= ~(1 << pin);
+ 46c:	50 98       	cbi	0x0a, 0	; 10
+
+		PORTD |= 1 << pin;
+ 46e:	58 9a       	sbi	0x0b, 0	; 11
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 470:	8c eb       	ldi	r24, 0xBC	; 188
+ 472:	93 e0       	ldi	r25, 0x03	; 3
+ 474:	01 97       	sbiw	r24, 0x01	; 1
+ 476:	f1 f7       	brne	.-4      	; 0x474 <OWI_Init+0xe>
+ 478:	08 95       	ret
+
+0000047a <OWI_WriteBit1>:
+ */
+void OWI_WriteBit1(unsigned char pins)
+{
+
+	// restore interrupts
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 47a:	2f b7       	in	r18, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 47c:	f8 94       	cli
+	{
+		// Drive bus low and delay.
+		OWI_PULL_BUS_LOW(pins);
+ 47e:	81 30       	cpi	r24, 0x01	; 1
+ 480:	11 f4       	brne	.+4      	; 0x486 <OWI_WriteBit1+0xc>
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+		break;
+	case PORT_DIR_OUT:
+		DDRD |= 1 << pin;
+ 482:	50 9a       	sbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTD |= 1 << pin;
+	} else {
+		PORTD &= ~(1 << pin);
+ 484:	58 98       	cbi	0x0b, 0	; 11
+ 486:	e8 e0       	ldi	r30, 0x08	; 8
+ 488:	f0 e0       	ldi	r31, 0x00	; 0
+ 48a:	31 97       	sbiw	r30, 0x01	; 1
+ 48c:	f1 f7       	brne	.-4      	; 0x48a <OWI_WriteBit1+0x10>
+		_delay_loop_2((OWI_DELAY_A_STD_MODE) / 4);
+
+		// Release bus and delay.
+		OWI_RELEASE_BUS(pins);
+ 48e:	81 30       	cpi	r24, 0x01	; 1
+ 490:	19 f4       	brne	.+6      	; 0x498 <OWI_WriteBit1+0x1e>
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+ 492:	50 98       	cbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRD &= ~(1 << pin);
+ 494:	50 98       	cbi	0x0a, 0	; 10
+
+		PORTD |= 1 << pin;
+ 496:	58 9a       	sbi	0x0b, 0	; 11
+ 498:	8c e7       	ldi	r24, 0x7C	; 124
+ 49a:	90 e0       	ldi	r25, 0x00	; 0
+ 49c:	01 97       	sbiw	r24, 0x01	; 1
+ 49e:	f1 f7       	brne	.-4      	; 0x49c <OWI_WriteBit1+0x22>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 4a0:	2f bf       	out	0x3f, r18	; 63
+    __asm__ volatile ("" ::: "memory");
+ 4a2:	08 95       	ret
+
+000004a4 <OWI_WriteBit0>:
+ */
+void OWI_WriteBit0(unsigned char pins)
+{
+
+	// restore interrupts
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 4a4:	2f b7       	in	r18, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 4a6:	f8 94       	cli
+	{
+		// Drive bus low and delay.
+		OWI_PULL_BUS_LOW(pins);
+ 4a8:	81 30       	cpi	r24, 0x01	; 1
+ 4aa:	11 f4       	brne	.+4      	; 0x4b0 <OWI_WriteBit0+0xc>
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+		break;
+	case PORT_DIR_OUT:
+		DDRD |= 1 << pin;
+ 4ac:	50 9a       	sbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTD |= 1 << pin;
+	} else {
+		PORTD &= ~(1 << pin);
+ 4ae:	58 98       	cbi	0x0b, 0	; 11
+ 4b0:	e4 e7       	ldi	r30, 0x74	; 116
+ 4b2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4b4:	31 97       	sbiw	r30, 0x01	; 1
+ 4b6:	f1 f7       	brne	.-4      	; 0x4b4 <OWI_WriteBit0+0x10>
+		_delay_loop_2((OWI_DELAY_C_STD_MODE) / 4);
+
+		// Release bus and delay.
+		OWI_RELEASE_BUS(pins);
+ 4b8:	81 30       	cpi	r24, 0x01	; 1
+ 4ba:	19 f4       	brne	.+6      	; 0x4c2 <OWI_WriteBit0+0x1e>
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+ 4bc:	50 98       	cbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRD &= ~(1 << pin);
+ 4be:	50 98       	cbi	0x0a, 0	; 10
+
+		PORTD |= 1 << pin;
+ 4c0:	58 9a       	sbi	0x0b, 0	; 11
+ 4c2:	80 e1       	ldi	r24, 0x10	; 16
+ 4c4:	90 e0       	ldi	r25, 0x00	; 0
+ 4c6:	01 97       	sbiw	r24, 0x01	; 1
+ 4c8:	f1 f7       	brne	.-4      	; 0x4c6 <OWI_WriteBit0+0x22>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 4ca:	2f bf       	out	0x3f, r18	; 63
+    __asm__ volatile ("" ::: "memory");
+ 4cc:	08 95       	ret
+
+000004ce <OWI_ReadBit>:
+{
+
+	unsigned char bitsRead;
+
+	// restore interrupts
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 4ce:	2f b7       	in	r18, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 4d0:	f8 94       	cli
+	{
+		// Drive bus low and delay.
+		OWI_PULL_BUS_LOW(pins);
+ 4d2:	81 30       	cpi	r24, 0x01	; 1
+ 4d4:	11 f4       	brne	.+4      	; 0x4da <OWI_ReadBit+0xc>
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+		break;
+	case PORT_DIR_OUT:
+		DDRD |= 1 << pin;
+ 4d6:	50 9a       	sbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTD |= 1 << pin;
+	} else {
+		PORTD &= ~(1 << pin);
+ 4d8:	58 98       	cbi	0x0b, 0	; 11
+ 4da:	e8 e0       	ldi	r30, 0x08	; 8
+ 4dc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4de:	31 97       	sbiw	r30, 0x01	; 1
+ 4e0:	f1 f7       	brne	.-4      	; 0x4de <OWI_ReadBit+0x10>
+		_delay_loop_2((OWI_DELAY_A_STD_MODE) / 4);
+
+		// Release bus and delay.
+		OWI_RELEASE_BUS(pins);
+ 4e2:	81 30       	cpi	r24, 0x01	; 1
+ 4e4:	19 f4       	brne	.+6      	; 0x4ec <OWI_ReadBit+0x1e>
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+ 4e6:	50 98       	cbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRD &= ~(1 << pin);
+ 4e8:	50 98       	cbi	0x0a, 0	; 10
+
+		PORTD |= 1 << pin;
+ 4ea:	58 9a       	sbi	0x0b, 0	; 11
+ 4ec:	ee e0       	ldi	r30, 0x0E	; 14
+ 4ee:	f0 e0       	ldi	r31, 0x00	; 0
+ 4f0:	31 97       	sbiw	r30, 0x01	; 1
+ 4f2:	f1 f7       	brne	.-4      	; 0x4f0 <OWI_ReadBit+0x22>
+		_delay_loop_2((OWI_DELAY_E_STD_MODE) / 4);
+
+		// Sample bus and delay.
+		bitsRead = OWI_PIN & pins;
+ 4f4:	99 b1       	in	r25, 0x09	; 9
+ 4f6:	ea e6       	ldi	r30, 0x6A	; 106
+ 4f8:	f0 e0       	ldi	r31, 0x00	; 0
+ 4fa:	31 97       	sbiw	r30, 0x01	; 1
+ 4fc:	f1 f7       	brne	.-4      	; 0x4fa <OWI_ReadBit+0x2c>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 4fe:	2f bf       	out	0x3f, r18	; 63
+		_delay_loop_2((OWI_DELAY_F_STD_MODE) / 4);
+	}
+
+	return bitsRead;
+}
+ 500:	89 23       	and	r24, r25
+ 502:	08 95       	ret
+
+00000504 <OWI_DetectPresence>:
+unsigned char OWI_DetectPresence(unsigned char pins)
+{
+
+	unsigned char presenceDetected;
+
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 504:	2f b7       	in	r18, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 506:	f8 94       	cli
+	{
+		// Drive bus low and delay.
+		OWI_PULL_BUS_LOW(pins);
+ 508:	81 30       	cpi	r24, 0x01	; 1
+ 50a:	11 f4       	brne	.+4      	; 0x510 <OWI_DetectPresence+0xc>
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+		break;
+	case PORT_DIR_OUT:
+		DDRD |= 1 << pin;
+ 50c:	50 9a       	sbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTD |= 1 << pin;
+	} else {
+		PORTD &= ~(1 << pin);
+ 50e:	58 98       	cbi	0x0b, 0	; 11
+ 510:	ec eb       	ldi	r30, 0xBC	; 188
+ 512:	f3 e0       	ldi	r31, 0x03	; 3
+ 514:	31 97       	sbiw	r30, 0x01	; 1
+ 516:	f1 f7       	brne	.-4      	; 0x514 <OWI_DetectPresence+0x10>
+		_delay_loop_2((OWI_DELAY_H_STD_MODE) / 4);
+
+		// Release bus and delay.
+		OWI_RELEASE_BUS(pins);
+ 518:	81 30       	cpi	r24, 0x01	; 1
+ 51a:	19 f4       	brne	.+6      	; 0x522 <OWI_DetectPresence+0x1e>
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+ 51c:	50 98       	cbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRD &= ~(1 << pin);
+ 51e:	50 98       	cbi	0x0a, 0	; 10
+
+		PORTD |= 1 << pin;
+ 520:	58 9a       	sbi	0x0b, 0	; 11
+ 522:	e8 e8       	ldi	r30, 0x88	; 136
+ 524:	f0 e0       	ldi	r31, 0x00	; 0
+ 526:	31 97       	sbiw	r30, 0x01	; 1
+ 528:	f1 f7       	brne	.-4      	; 0x526 <OWI_DetectPresence+0x22>
+		_delay_loop_2((OWI_DELAY_I_STD_MODE) / 4);
+
+		// Sample bus to detect presence signal and delay.
+		presenceDetected = ((~OWI_PIN) & pins);
+ 52a:	99 b1       	in	r25, 0x09	; 9
+ 52c:	e0 e3       	ldi	r30, 0x30	; 48
+ 52e:	f3 e0       	ldi	r31, 0x03	; 3
+ 530:	31 97       	sbiw	r30, 0x01	; 1
+ 532:	f1 f7       	brne	.-4      	; 0x530 <OWI_DetectPresence+0x2c>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 534:	2f bf       	out	0x3f, r18	; 63
+ 536:	90 95       	com	r25
+		_delay_loop_2((OWI_DELAY_J_STD_MODE) / 4);
+	}
+
+	return presenceDetected;
+}
+ 538:	89 23       	and	r24, r25
+ 53a:	08 95       	ret
+
+0000053c <system_init>:
+{
+	/* On AVR devices all peripherals are enabled from power on reset, this
+	 * disables all peripherals to save power. Driver shall enable
+	 * peripheral if used */
+
+	PRR = (1 << PRSPI) | (1 << PRTIM2) | (1 << PRTIM0) | (1 << PRTIM1) | (1 << PRTWI) | (1 << PRUSART0) | (1 << PRADC);
+ 53c:	8f ee       	ldi	r24, 0xEF	; 239
+ 53e:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <__TEXT_REGION_LENGTH__+0x7e0064>
+		break;
+	case PORT_DIR_OUT:
+		DDRB |= mask;
+		break;
+	case PORT_DIR_OFF:
+		DDRB &= ~mask;
+ 542:	84 b1       	in	r24, 0x04	; 4
+ 544:	14 b8       	out	0x04, r1	; 4
+
+		PORTB |= mask;
+ 546:	85 b1       	in	r24, 0x05	; 5
+ 548:	9f ef       	ldi	r25, 0xFF	; 255
+ 54a:	95 b9       	out	0x05, r25	; 5
+		break;
+	case PORT_DIR_OUT:
+		DDRC |= mask;
+		break;
+	case PORT_DIR_OFF:
+		DDRC &= ~mask;
+ 54c:	87 b1       	in	r24, 0x07	; 7
+ 54e:	80 78       	andi	r24, 0x80	; 128
+ 550:	87 b9       	out	0x07, r24	; 7
+
+		PORTC |= mask;
+ 552:	88 b1       	in	r24, 0x08	; 8
+ 554:	8f 67       	ori	r24, 0x7F	; 127
+ 556:	88 b9       	out	0x08, r24	; 8
+		break;
+	case PORT_DIR_OUT:
+		DDRD |= mask;
+		break;
+	case PORT_DIR_OFF:
+		DDRD &= ~mask;
+ 558:	8a b1       	in	r24, 0x0a	; 10
+ 55a:	1a b8       	out	0x0a, r1	; 10
+
+		PORTD |= mask;
+ 55c:	8b b1       	in	r24, 0x0b	; 11
+ 55e:	9b b9       	out	0x0b, r25	; 11
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+ 560:	50 98       	cbi	0x0a, 0	; 10
+static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRD &= ~(1 << pin);
+ 562:	50 98       	cbi	0x0a, 0	; 10
+
+		PORTD |= 1 << pin;
+ 564:	58 9a       	sbi	0x0b, 0	; 11
+ * \return Initialization status.
+ */
+static inline int8_t sysctrl_init()
+{
+	/* Set up system clock prescaler according to configuration */
+	protected_write_io((void *)&CLKPR, 1 << CLKPCE, (0 << CLKPS3) | (0 << CLKPS2) | (0 << CLKPS1) | (0 << CLKPS0)); //Clock Division Factor 1
+ 566:	40 e0       	ldi	r20, 0x00	; 0
+ 568:	60 e8       	ldi	r22, 0x80	; 128
+ 56a:	81 e6       	ldi	r24, 0x61	; 97
+ 56c:	90 e0       	ldi	r25, 0x00	; 0
+ 56e:	0e 94 bc 02 	call	0x578	; 0x578 <protected_write_io>
+
+	SMCR = (0 << SM2) | (0 << SM1) | (0 << SM0) | // Idle
+ 572:	13 be       	out	0x33, r1	; 51
+	       (0 << SE); //Sleep disable
+
+	MCUCR = (0 << PUD);
+ 574:	15 be       	out	0x35, r1	; 53
+ 576:	08 95       	ret
+
+00000578 <protected_write_io>:
+#if defined(__GNUC__)
+	/*
+	 * We need to disable interrupts globally before the protected
+	 * sequence. In order to do that we must save SREG first.
+	 */
+	in      r18, _SFR_IO_ADDR(SREG)
+ 578:	2f b7       	in	r18, 0x3f	; 63
+	cli
+ 57a:	f8 94       	cli
+	
+#ifdef RAMPZ
+	out     _SFR_IO_ADDR(RAMPZ), r1               // Clear bits 23:16 of Z
+#endif
+	mov    r30, r24                // Load addr into Z
+ 57c:	e8 2f       	mov	r30, r24
+	mov    r31, r25
+ 57e:	f9 2f       	mov	r31, r25
+	st      Z, r22                  // Write protection bit to I/O register
+ 580:	60 83       	st	Z, r22
+	st      Z, r20                  // Write value to I/O register
+ 582:	40 83       	st	Z, r20
+
+	out     _SFR_IO_ADDR(SREG), r18
+ 584:	2f bf       	out	0x3f, r18	; 63
+	ret                             // Return to caller
+ 586:	08 95       	ret
+
+00000588 <_exit>:
+ 588:	f8 94       	cli
+
+0000058a <__stop_program>:
+ 58a:	ff cf       	rjmp	.-2      	; 0x58a <__stop_program>
